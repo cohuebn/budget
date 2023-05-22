@@ -1,0 +1,40 @@
+{
+  "private": true,
+  "sideEffects": false,
+  "scripts": {
+    "build": "remix build",
+    "dev": "remix dev",
+    "start": "remix-serve build",
+    "typecheck": "tsc",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./"
+  },
+  "dependencies": {
+    "@remix-run/css-bundle": "^1.16.1",
+    "@remix-run/node": "^1.16.1",
+    "@remix-run/react": "^1.16.1",
+    "@remix-run/serve": "^1.16.1",
+    "isbot": "^3.6.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^1.16.1",
+    "@remix-run/eslint-config": "^1.16.1",
+    "@types/react": "^18.0.35",
+    "@types/react-dom": "^18.0.11",
+    "eslint": "^8.38.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^27.1.6",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-sonarjs": "^0.18.0",
+    "eslint-plugin-unicorn": "^45.0.1",
+    "typescript": "^5.0.4"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
