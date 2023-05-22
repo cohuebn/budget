@@ -43,6 +43,13 @@ module.exports = {
         devDependencies: true,
       },
     ],
+    "import/extensions": [
+      "off",
+      {
+        ts: "never",
+        tsx: "never",
+      },
+    ],
     "no-underscore-dangle": 0,
     "no-restricted-syntax": [
       "error",
