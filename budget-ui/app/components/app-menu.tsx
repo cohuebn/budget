@@ -9,7 +9,7 @@ import { Menu } from "@mui/icons-material";
 
 export function AppMenu() {
   return (
-    <MuiAppBar position="static">
+    <MuiAppBar position="static" sx={{ marginBottom: 2 }}>
       <Toolbar>
         <IconButton
           size="large"

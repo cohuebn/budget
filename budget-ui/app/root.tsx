@@ -96,7 +96,7 @@ export function ErrorBoundary() {
   return (
     <Document>
       <Layout>
-        <Container sx={{ marginTop: 2 }}>
+        <Container>
           <Typography variant="h4">An Error Occurred</Typography>
           <Typography variant="body1">Status: {errorDetails.status}</Typography>
           {errorDetails.message && (
