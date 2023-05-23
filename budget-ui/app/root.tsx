@@ -6,10 +6,15 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useCatch,
+  useRouteError,
+  isRouteErrorResponse,
 } from "@remix-run/react";
 import { withEmotionCache } from "@emotion/react";
-import { unstable_useEnhancedEffect as useEnhancedEffect } from "@mui/material";
+import {
+  Container,
+  Typography,
+  unstable_useEnhancedEffect as useEnhancedEffect,
+} from "@mui/material";
 
 import theme from "./theme";
 import ClientStyleContext from "./client-style-context";
@@ -63,8 +68,6 @@ const Document = withEmotionCache(
   }
 );
 
-// https://remix.run/api/conventions#default-export
-// https://remix.run/api/conventions#route-filenames
 export default function App() {
   return (
     <Document>
@@ -75,58 +78,33 @@ export default function App() {
   );
 }
 
-// https://remix.run/docs/en/v1/api/conventions#errorboundary
-export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error);
-
-  return (
-    <Document title="Error!">
-      <Layout>
-        <div>
-          <h1>There was an error</h1>
-          <p>{error.message}</p>
-          <hr />
-          <p>
-            Hey, developer, you should replace this with what you want your
-            users to see.
-          </p>
-        </div>
-      </Layout>
-    </Document>
-  );
+function extractErrorDetails(error: unknown) {
+  if (isRouteErrorResponse(error)) {
+    return { status: error.status, message: error.data.message };
+  }
+  return error instanceof Error
+    ? { status: 500, message: error.message }
+    : { status: 500, message: "Unknown error" };
 }
 
-// https://remix.run/docs/en/v1/api/conventions#catchboundary
-export function CatchBoundary() {
-  const caught = useCatch();
+export function ErrorBoundary() {
+  const error = useRouteError();
+  console.error(error);
 
-  let message;
-  switch (caught.status) {
-    case 401:
-      message = (
-        <p>
-          Oops! Looks like you tried to visit a page that you do not have access
-          to.
-        </p>
-      );
-      break;
-    case 404:
-      message = (
-        <p>Oops! Looks like you tried to visit a page that does not exist.</p>
-      );
-      break;
-
-    default:
-      throw new Error(caught.data || caught.statusText);
-  }
+  const errorDetails = extractErrorDetails(error);
 
   return (
-    <Document title={`${caught.status} ${caught.statusText}`}>
+    <Document>
       <Layout>
-        <h1>
-          {caught.status}: {caught.statusText}
-        </h1>
-        {message}
+        <Container sx={{ marginTop: 2 }}>
+          <Typography variant="h4">An Error Occurred</Typography>
+          <Typography variant="body1">Status: {errorDetails.status}</Typography>
+          {errorDetails.message && (
+            <Typography variant="body1">
+              Message: {errorDetails.message}
+            </Typography>
+          )}
+        </Container>
       </Layout>
     </Document>
   );

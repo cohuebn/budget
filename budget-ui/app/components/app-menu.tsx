@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import { Menu } from "@mui/icons-material";
 
-export function AppBar() {
+export function AppMenu() {
   return (
     <MuiAppBar position="static">
       <Toolbar>
