@@ -1,5 +1,5 @@
 import { Payments, Receipt } from "@mui/icons-material";
-import { Container, List, ListItem, Typography } from "@mui/material";
+import { Container, List, Typography } from "@mui/material";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 

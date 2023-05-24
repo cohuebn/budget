@@ -16,5 +16,7 @@ export function formatCurrency(
     ...defaultFormatOptions,
     ...options,
   };
-  return `${defaultedOptions.symbol}${value.toFixed(2)}`;
+  const negativePrefix = value < 0 ? "-" : "";
+  const absoluteCurrencyValue = Math.abs(value).toFixed(2);
+  return `${negativePrefix}${defaultedOptions.symbol}${absoluteCurrencyValue}`;
 }
