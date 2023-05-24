@@ -13,7 +13,12 @@ export function BudgetSummaryItem(props: BudgetSummaryItemProps) {
     <ListItem disablePadding sx={{ marginBottom: 1 }}>
       {props.icon}
       <Typography variant="body1" sx={{ marginLeft: 1, minWidth: 30 }}>
-        {props.label}: {formatCurrency(props.value)}
+        <span style={{ display: "inline-block", width: "5em" }}>
+          {props.label}:{" "}
+        </span>
+        <span style={{ textAlign: "right" }}>
+          {formatCurrency(props.value)}
+        </span>
       </Typography>
     </ListItem>
   );

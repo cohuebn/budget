@@ -2,28 +2,39 @@ import { createTheme } from "@mui/material/styles";
 import { red } from "@mui/material/colors";
 
 // Create a theme instance.
+export const colors = {
+  background: "#02894b",
+  primary: "#016046",
+  text: "#ffffff",
+  error: red.A400,
+};
+
 const theme = createTheme({
   palette: {
     text: {
-      primary: "#fff",
+      primary: colors.text,
     },
     primary: {
-      main: "#049628",
-    },
-    secondary: {
-      main: "#EEC170",
+      main: colors.primary,
     },
     error: {
-      main: red.A400,
+      main: colors.error,
     },
   },
   components: {
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          backgroundColor: "rgb(2,137,75)",
-          background:
-            "linear-gradient(115deg, rgba(2,137,75,1) 35%, rgba(8,144,82,1) 100%)",
+          backgroundColor: colors.background,
+          backgroundImage:
+            "linear-gradient(115deg, rgba(2,137,75,1) 35%, rgba(2,109,60,1) 100%);",
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        elevation: {
+          backgroundColor: colors.primary,
         },
       },
     },
