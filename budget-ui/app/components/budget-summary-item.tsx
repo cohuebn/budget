@@ -1,12 +1,19 @@
-import { ListItem, TableCell, TableRow, Typography } from "@mui/material";
+import { TableCell, TableRow } from "@mui/material";
 
 import { formatCurrency } from "~/formatters/currency";
 
+type BudgetSummaryItemValue = number | Date | string;
+
 type BudgetSummaryItemProps = {
   label: string;
-  value: number;
+  value: BudgetSummaryItemValue;
   icon: React.ReactElement;
 };
+
+function formatValue(value: BudgetSummaryItemValue) {
+  if (value instanceof Date) return value.toISOString();
+  return typeof value === "number" ? formatCurrency(value) : value;
+}
 
 export function BudgetSummaryItem(props: BudgetSummaryItemProps) {
   return (
@@ -17,7 +24,7 @@ export function BudgetSummaryItem(props: BudgetSummaryItemProps) {
         </span>
       </TableCell>
       <TableCell align="right" sx={{ borderBottom: "none" }}>
-        {formatCurrency(props.value)}
+        {formatValue(props.value)}
       </TableCell>
     </TableRow>
   );
