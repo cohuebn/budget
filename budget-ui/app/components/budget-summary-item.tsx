@@ -1,4 +1,4 @@
-import { ListItem, Typography } from "@mui/material";
+import { ListItem, TableCell, TableRow, Typography } from "@mui/material";
 
 import { formatCurrency } from "~/formatters/currency";
 
@@ -10,16 +10,15 @@ type BudgetSummaryItemProps = {
 
 export function BudgetSummaryItem(props: BudgetSummaryItemProps) {
   return (
-    <ListItem disablePadding sx={{ marginBottom: 1 }}>
-      {props.icon}
-      <Typography variant="body1" sx={{ marginLeft: 1, minWidth: 30 }}>
-        <span style={{ display: "inline-block", width: "5em" }}>
-          {props.label}:{" "}
+    <TableRow>
+      <TableCell sx={{ borderBottom: "none" }}>
+        <span style={{ display: "flex", alignItems: "center" }}>
+          {props.icon} <span style={{ marginLeft: 8 }}>{props.label}</span>
         </span>
-        <span style={{ textAlign: "right" }}>
-          {formatCurrency(props.value)}
-        </span>
-      </Typography>
-    </ListItem>
+      </TableCell>
+      <TableCell align="right" sx={{ borderBottom: "none" }}>
+        {formatCurrency(props.value)}
+      </TableCell>
+    </TableRow>
   );
 }

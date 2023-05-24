@@ -10,7 +10,7 @@ export async function loader() {
   });
 }
 
-export default function Budget() {
+export default function Summary() {
   const budgetSummary = useLoaderData<typeof loader>();
   return <BudgetSummary budgetSummary={budgetSummary} />;
 }

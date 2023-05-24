@@ -1,4 +1,12 @@
-import { List, Paper, Typography } from "@mui/material";
+import {
+  List,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+  Typography,
+} from "@mui/material";
 import { Payments, Receipt } from "@mui/icons-material";
 
 import { BudgetSummary as BudgetSummaryData } from "../types";
@@ -16,18 +24,20 @@ export function BudgetSummary({ budgetSummary }: BudgetSummaryProps) {
         <Typography variant="h4" textAlign="center">
           Your Budget Summary
         </Typography>
-        <List>
-          <BudgetSummaryItem
-            label="Income"
-            value={budgetSummary.income}
-            icon={<Payments />}
-          />
-          <BudgetSummaryItem
-            label="Expenses"
-            value={budgetSummary.expenses}
-            icon={<Receipt />}
-          />
-        </List>
+        <Table>
+          <TableBody>
+            <BudgetSummaryItem
+              label="Income"
+              value={budgetSummary.income}
+              icon={<Payments />}
+            />
+            <BudgetSummaryItem
+              label="Expenses"
+              value={budgetSummary.expenses}
+              icon={<Receipt />}
+            />
+          </TableBody>
+        </Table>
       </Paper>
     </div>
   );

@@ -27,7 +27,7 @@ const theme = createTheme({
         body: {
           backgroundColor: colors.background,
           backgroundImage:
-            "linear-gradient(115deg, rgba(2,137,75,1) 35%, rgba(2,109,60,1) 100%);",
+            "linear-gradient(115deg, rgba(2,137,75,1) 35%, rgba(4,145,81,1) 100%)",
         },
       },
     },
