@@ -1,5 +1,9 @@
-import { IconButton, Typography, Button, Box } from "@mui/material";
+import { IconButton, Typography, Box } from "@mui/material";
 import { Menu } from "@mui/icons-material";
+
+import { CurrentUser } from "./current-user";
+
+import { getSessionUser } from "~/utils/user-session";
 
 export function AppMenu() {
   return (
@@ -24,7 +28,7 @@ export function AppMenu() {
       <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
         Budge It
       </Typography>
-      <Button color="inherit">Login</Button>
+      <CurrentUser />
     </Box>
   );
 }
