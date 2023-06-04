@@ -1,12 +1,17 @@
 import { User } from "firebase/auth";
 
-const userKey = "user";
+const userKey = "budget/user";
 
-export function setSessionUser(user: User) {
-  sessionStorage.setItem(userKey, JSON.stringify(user));
+export function setSessionUser(user: User | null) {
+  if (user) {
+    localStorage.setItem(userKey, JSON.stringify(user));
+  } else {
+    localStorage.removeItem(userKey);
+  }
 }
 
 export function getSessionUser(): User | null {
-  const sessionItem = sessionStorage.getItem(userKey);
-  return sessionItem ? (JSON.parse(sessionItem) as User) : null;
+  const sessionItem = localStorage.getItem(userKey);
+  if (!sessionItem) return null;
+  return JSON.parse(sessionItem) as User;
 }

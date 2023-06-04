@@ -5,5 +5,5 @@ export const meta: V2_MetaFunction = () => {
 };
 
 export const loader = async () => {
-  return redirect("/summary");
+  return redirect("/dashboard");
 };
