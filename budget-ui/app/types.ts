@@ -12,3 +12,5 @@ export type UpcomingEventData = {
   name: string;
   value: number;
 };
+
+export type Timeseries = Array<{ date: Date; value: number }>;

@@ -1,5 +1,11 @@
 import { Table, TableBody } from "@mui/material";
-import { CalendarMonth, Payments, Receipt } from "@mui/icons-material";
+import {
+  ArrowDownward,
+  ArrowUpward,
+  CalendarMonth,
+  Payments,
+  Receipt,
+} from "@mui/icons-material";
 
 import { BudgetSummaryData } from "../types";
 
@@ -13,6 +19,8 @@ type BudgetSummaryProps = {
 };
 
 export function BudgetSummary({ budgetSummary }: BudgetSummaryProps) {
+  const netGainLoss =
+    budgetSummary.currentPeriod.income + budgetSummary.currentPeriod.expenses;
   const content = (
     <Table size="small" sx={{ maxWidth: 400 }}>
       <TableBody>
@@ -32,12 +40,9 @@ export function BudgetSummary({ budgetSummary }: BudgetSummaryProps) {
           icon={<Receipt />}
         />
         <BudgetSummaryItem
-          label="Current Period Profit/Loss"
-          value={
-            budgetSummary.currentPeriod.income +
-            budgetSummary.currentPeriod.expenses
-          }
-          icon={<Receipt />}
+          label="Current Period Net Gain/Loss"
+          value={netGainLoss}
+          icon={netGainLoss > 0 ? <ArrowUpward /> : <ArrowDownward />}
         />
       </TableBody>
     </Table>

@@ -15,7 +15,7 @@ export function UpcomingEvent({ upcomingEvent }: UpcomingEventProps) {
         {formatDate(upcomingEvent.date)}
       </TableCell>
       <TableCell sx={{ borderBottom: "none" }}>{upcomingEvent.name}</TableCell>
-      <TableCell sx={{ borderBottom: "none" }}>
+      <TableCell align="right" sx={{ borderBottom: "none" }}>
         {formatCurrency(upcomingEvent.value)}
       </TableCell>
     </TableRow>
