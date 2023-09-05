@@ -1,42 +1,11 @@
-import {
-  CategoryScale,
-  Chart as ChartJS,
-  ChartOptions,
-  Legend,
-  LineElement,
-  LinearScale,
-  PointElement,
-  LineController,
-  Title,
-  Tooltip,
-  TimeScale,
-  Colors,
-  Chart,
-  BarController,
-  BarElement,
-} from "chart.js";
-import "chartjs-adapter-date-fns";
-import { useEffect, useState } from "react";
+import { ChartOptions, ChartType } from "chart.js";
 
 import { DashboardPanel } from "./dashboard-panel";
+import { useChartCanvas } from "./use-chart";
 
 import { Timeseries } from "~/types";
 import { colors } from "~/theme";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  LineController,
-  BarElement,
-  BarController,
-  Title,
-  Tooltip,
-  Legend,
-  TimeScale,
-  Colors
-);
+import { toChartDatapoints } from "~/utils/timeseries";
 
 type SpendingChartProps = {
   income: Timeseries;
@@ -45,21 +14,13 @@ type SpendingChartProps = {
   };
 };
 
-enum ChartType {
-  line = "line",
-  bar = "bar",
-}
-
 function asLineSeries(label: string, timeseries: Timeseries, color: string) {
   return {
     label,
     borderColor: color,
     backgroundColor: color,
-    type: ChartType.line,
-    data: timeseries.map(({ date, value }) => ({
-      x: date.toISOString(),
-      y: value,
-    })),
+    type: "line" as ChartType,
+    data: toChartDatapoints(timeseries),
   };
 }
 
@@ -68,11 +29,8 @@ function asBarSeries(label: string, timeseries: Timeseries, color: string) {
     label,
     borderColor: color,
     backgroundColor: color,
-    type: ChartType.bar,
-    data: timeseries.map(({ date, value }) => ({
-      x: date.toISOString(),
-      y: value,
-    })),
+    type: "bar" as ChartType,
+    data: toChartDatapoints(timeseries),
     stack: "Spending",
   };
 }
@@ -109,29 +67,13 @@ const options: ChartOptions = {
 };
 
 export function SpendingChart(props: SpendingChartProps) {
-  const [chartElement, setChartElement] = useState<HTMLCanvasElement | null>(
-    null
-  );
-
-  useEffect(() => {
-    if (chartElement) {
-      // eslint-disable-next-line no-new
-      new Chart(chartElement, {
-        data: asChartData(props),
-        options,
-      });
-    }
-  }, [chartElement]);
-
-  ChartJS.defaults.borderColor = colors.charts.borderColor;
-  ChartJS.defaults.color = colors.text;
-
-  const chartCanvas = (
-    <canvas
-      ref={(element) => setChartElement(element)}
-      style={{ height: "300px" }}
-    />
-  );
+  const chartCanvas = useChartCanvas({
+    config: {
+      data: asChartData(props),
+      options,
+    },
+    height: "300px",
+  });
   return (
     <DashboardPanel title="Income & spending history" children={chartCanvas} />
   );

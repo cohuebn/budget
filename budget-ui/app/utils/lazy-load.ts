@@ -1,11 +1,11 @@
 import { isNullOrUndefined } from "./is-not-null-or-undefined";
 
 export function lazyLoad<T>(getValue: () => T) {
-  let _value: T;
+  let value: T;
   return () => {
-    if (isNullOrUndefined(_value)) {
-      _value = getValue();
+    if (isNullOrUndefined(value)) {
+      value = getValue();
     }
-    return _value;
+    return value;
   };
 }
