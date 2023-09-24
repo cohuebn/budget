@@ -1,3 +1,3 @@
 # Budget App
 
-Yet another budget keeping app because I think I can make a better one
+Yet another personal budget app because I think I can make a better one than what's out in the world for free.
