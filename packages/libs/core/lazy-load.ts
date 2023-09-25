@@ -1,4 +1,4 @@
-import { isNullOrUndefined } from "@budget/core";
+import { isNullOrUndefined } from "./is-not-null-or-undefined";
 
 export function lazyLoad<T>(getValue: () => T) {
   let value: T;

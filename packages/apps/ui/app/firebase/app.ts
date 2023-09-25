@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 
-import { lazyLoad } from "~/utils/lazy-load";
+import { lazyLoad } from "@budget/core";
 
 export const getFirebaseApp = lazyLoad(async () => {
   const configResponse = await fetch("/config/firebase");
