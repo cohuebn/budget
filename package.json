@@ -4,13 +4,16 @@
   "license": "MIT",
   "scripts": {},
   "private": true,
-  "dependencies": {},
   "devDependencies": {
     "@nx/js": "16.9.0",
+    "esbuild-loader": "^4.0.2",
     "nx": "16.9.0",
-    "nx-cloud": "latest"
+    "nx-cloud": "latest",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "zip-webpack-plugin": "^4.0.1"
   },
   "workspaces": [
-    "packages/*"
+    "packages/**/*"
   ]
 }

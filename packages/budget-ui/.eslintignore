@@ -1,7 +1,0 @@
-**/dist
-**/build
-**/node_modules
-**/generated
-**/dev.ts
-remix.config.js
-.eslintrc.js
