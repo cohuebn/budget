@@ -18,7 +18,7 @@ describe("env", () => {
     });
     it("throw error if not on environment", () => {
       expect(() => getRequired(Environment.Version)).toThrow(
-        `${Environment.Version} should be set on the environment`
+        `${Environment.Version} should be set on the environment`,
       );
     });
   });
@@ -27,9 +27,7 @@ describe("env", () => {
     const defaultValue = "wet bandits";
 
     it("should return default value when provided", () => {
-      expect(getOptional(Environment.Version, "a different value")).toEqual(
-        "a different value"
-      );
+      expect(getOptional(Environment.Version, "a different value")).toEqual("a different value");
     });
 
     it("should return undefined when not provided", () => {
@@ -60,50 +58,32 @@ describe("env", () => {
 
     it("should return transformed value when provided", () => {
       process.env.VERSION = "meow!";
-      expect(getTransformedOptional(Environment.Version, transformer)).toEqual(
-        5
-      );
+      expect(getTransformedOptional(Environment.Version, transformer)).toEqual(5);
     });
 
     it("should still transform empty provided value", () => {
       process.env.VERSION = "";
-      expect(getTransformedOptional(Environment.Version, transformer)).toEqual(
-        0
-      );
+      expect(getTransformedOptional(Environment.Version, transformer)).toEqual(0);
     });
 
     it("should return undefined when not provided", () => {
-      expect(getTransformedOptional(Environment.Version, transformer)).toEqual(
-        undefined
-      );
+      expect(getTransformedOptional(Environment.Version, transformer)).toEqual(undefined);
     });
 
     it("should return transformed value when provided", () => {
       process.env.VERSION = "meow!";
-      const result = getTransformedOptional(
-        Environment.Version,
-        transformer,
-        defaultValue
-      );
+      const result = getTransformedOptional(Environment.Version, transformer, defaultValue);
       expect(result).toEqual(5);
     });
 
     it("should still transform empty provided value", () => {
       process.env.VERSION = "";
-      const result = getTransformedOptional(
-        Environment.Version,
-        transformer,
-        defaultValue
-      );
+      const result = getTransformedOptional(Environment.Version, transformer, defaultValue);
       expect(result).toEqual(0);
     });
 
     it("should return the default value when environment variable not provided", () => {
-      const result = getTransformedOptional(
-        Environment.Version,
-        transformer,
-        defaultValue
-      );
+      const result = getTransformedOptional(Environment.Version, transformer, defaultValue);
       expect(result).toEqual(defaultValue);
     });
   });
@@ -152,7 +132,7 @@ describe("env", () => {
         process.env.MICK_JAGGER_SAYS = falsyCase;
         const result = envKeyExists("MICK_JAGGER_SAYS");
         expect(result).toBe(true);
-      })
+      }),
     );
   });
 });

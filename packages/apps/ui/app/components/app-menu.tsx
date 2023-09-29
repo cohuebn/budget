@@ -50,10 +50,7 @@ export function AppMenu() {
       <Drawer anchor="left" variant="persistent" open={menuDrawerOpen}>
         <Box sx={{ width: 250 }}>
           <DrawerHeader>
-            <IconButton
-              onClick={() => setMenuDrawerOpen(false)}
-              color="inherit"
-            >
+            <IconButton onClick={() => setMenuDrawerOpen(false)} color="inherit">
               {theme.direction === "ltr" ? <ChevronLeft /> : <ChevronRight />}
             </IconButton>
           </DrawerHeader>

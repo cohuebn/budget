@@ -13,7 +13,7 @@ export default function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext
+  remixContext: EntryContext,
 ) {
   const cache = createEmotionCache();
   const { extractCriticalToChunks } = createEmotionServer(cache);
@@ -47,7 +47,7 @@ export default function handleRequest(
   // Add the Emotion style tags after the insertion point meta tag
   const markup = html.replace(
     /<meta(\s)*name="emotion-insertion-point"(\s)*content="emotion-insertion-point"(\s)*\/>/,
-    `<meta name="emotion-insertion-point" content="emotion-insertion-point"/>${stylesHTML}`
+    `<meta name="emotion-insertion-point" content="emotion-insertion-point"/>${stylesHTML}`,
   );
 
   responseHeaders.set("Content-Type", "text/html");

@@ -4,10 +4,7 @@ import { typedjson, useTypedLoaderData } from "remix-typedjson";
 import { BudgetSummary } from "~/components/budget-summary";
 import { SpendingChart } from "~/components/spending-chart";
 import { UpcomingEvents } from "~/components/upcoming-events";
-import {
-  mockIncomeHistory,
-  mockSpendingHistory,
-} from "~/mock-data/budget-history";
+import { mockIncomeHistory, mockSpendingHistory } from "~/mock-data/budget-history";
 import { mockBudgetSummaryData } from "~/mock-data/budget-summary";
 import { mockUpcomingEvents } from "~/mock-data/upcoming-events";
 

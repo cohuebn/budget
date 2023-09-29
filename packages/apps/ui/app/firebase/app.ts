@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-
 import { lazyLoad } from "@budget/core";
 
 export const getFirebaseApp = lazyLoad(async () => {

@@ -38,11 +38,9 @@ function asBarSeries(label: string, timeseries: Timeseries, color: string) {
 function asChartData({ income, spending }: SpendingChartProps) {
   const incomeSeries = asLineSeries("Income", income, colors.charts.series[0]);
 
-  const spendingSeries = Object.entries(spending).map(
-    ([category, timeseries], index) => {
-      return asBarSeries(category, timeseries, colors.charts.series[index + 1]);
-    }
-  );
+  const spendingSeries = Object.entries(spending).map(([category, timeseries], index) => {
+    return asBarSeries(category, timeseries, colors.charts.series[index + 1]);
+  });
   return {
     datasets: [incomeSeries, ...spendingSeries],
   };
@@ -74,7 +72,5 @@ export function SpendingChart(props: SpendingChartProps) {
     },
     height: "300px",
   });
-  return (
-    <DashboardPanel title="Income & spending history" children={chartCanvas} />
-  );
+  return <DashboardPanel title="Income & spending history" children={chartCanvas} />;
 }

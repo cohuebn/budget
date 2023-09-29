@@ -5,7 +5,6 @@
     "**/*.tsx",
     ".eslintrc.js",
     "jest.config.js",
-    "../../libs/budget-core/lazy-load.test.ts"
   ],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2019"],

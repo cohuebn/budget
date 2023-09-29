@@ -16,17 +16,17 @@ export function getOptional(envVar: string, defaultValue?: string) {
 
 export function getTransformedOptional<T>(
   envVar: string,
-  transformer: (value: string) => T
+  transformer: (value: string) => T,
 ): undefined | T;
 export function getTransformedOptional<T>(
   envVar: string,
   transformer: (value: string) => T,
-  defaultValue: T
+  defaultValue: T,
 ): T;
 export function getTransformedOptional<T>(
   envVar: string,
   transformer: (value: string) => T,
-  defaultValue?: T
+  defaultValue?: T,
 ) {
   const value = getOptional(envVar);
   return isNotNullOrUndefined(value) ? transformer(value) : defaultValue;

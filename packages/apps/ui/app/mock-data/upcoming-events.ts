@@ -1,7 +1,6 @@
 import { v4 as uuid } from "uuid";
 import { add } from "date-fns";
-
-import { UpcomingEventData } from "~/types";
+import { UpcomingEventData } from "@budget/core/types";
 
 const now = new Date();
 

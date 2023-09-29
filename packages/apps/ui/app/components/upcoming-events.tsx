@@ -1,15 +1,8 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from "@mui/material";
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { UpcomingEventData } from "@budget/core/types";
 
 import { DashboardPanel } from "./dashboard-panel";
 import { UpcomingEvent } from "./upcoming-event";
-
-import { UpcomingEventData } from "~/types";
 
 type UpcomingEventsProps = {
   upcomingEvents: UpcomingEventData[];

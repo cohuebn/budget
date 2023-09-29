@@ -32,7 +32,7 @@ ChartJS.register(
   Tooltip,
   Legend,
   TimeScale,
-  Colors
+  Colors,
 );
 ChartJS.defaults.borderColor = colors.charts.borderColor;
 ChartJS.defaults.color = colors.text;
@@ -42,11 +42,7 @@ enum ChartType {
   bar = "bar",
 }
 
-export function asLineSeries(
-  label: string,
-  timeseries: Timeseries,
-  color: string
-) {
+export function asLineSeries(label: string, timeseries: Timeseries, color: string) {
   return {
     label,
     borderColor: color,
@@ -59,12 +55,7 @@ export function asLineSeries(
   };
 }
 
-export function asBarSeries(
-  label: string,
-  timeseries: Timeseries,
-  color: string,
-  stack?: string
-) {
+export function asBarSeries(label: string, timeseries: Timeseries, color: string, stack?: string) {
   return {
     label,
     borderColor: color,
@@ -78,9 +69,7 @@ export function asBarSeries(
   };
 }
 
-export function getChartOptions(
-  unit: false | TimeUnit = "month"
-): ChartOptions {
+export function getChartOptions(unit: false | TimeUnit = "month"): ChartOptions {
   return {
     responsive: true,
     maintainAspectRatio: false,

@@ -25,7 +25,7 @@ import { colors } from "~/theme";
 type UseChartProps<
   TType extends ChartType = ChartType,
   TData = DefaultDataPoint<TType>,
-  TLabel = unknown
+  TLabel = unknown,
 > = {
   config:
     | ChartConfiguration<TType, TData, TLabel>
@@ -46,15 +46,13 @@ Chart.register(
   Tooltip,
   Legend,
   TimeScale,
-  Colors
+  Colors,
 );
 Chart.defaults.borderColor = colors.charts.borderColor;
 Chart.defaults.color = colors.text;
 
 export function useChartCanvas({ config, height }: UseChartProps) {
-  const [chartElement, setChartElement] = useState<HTMLCanvasElement | null>(
-    null
-  );
+  const [chartElement, setChartElement] = useState<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
     if (chartElement) {
@@ -63,7 +61,5 @@ export function useChartCanvas({ config, height }: UseChartProps) {
     }
   }, [chartElement, config, height]);
 
-  return (
-    <canvas ref={(element) => setChartElement(element)} style={{ height }} />
-  );
+  return <canvas ref={(element) => setChartElement(element)} style={{ height }} />;
 }

@@ -8,10 +8,7 @@ const defaultFormatOptions: CurrencyFormatOptions = {
   decimals: 2,
 };
 
-export function formatCurrency(
-  value: number,
-  options: Partial<CurrencyFormatOptions> = {}
-) {
+export function formatCurrency(value: number, options: Partial<CurrencyFormatOptions> = {}) {
   const defaultedOptions: CurrencyFormatOptions = {
     ...defaultFormatOptions,
     ...options,

@@ -1,13 +1,6 @@
 import { Table, TableBody } from "@mui/material";
-import {
-  ArrowDownward,
-  ArrowUpward,
-  CalendarMonth,
-  Payments,
-  Receipt,
-} from "@mui/icons-material";
-
-import { BudgetSummaryData } from "../types";
+import { ArrowDownward, ArrowUpward, CalendarMonth, Payments, Receipt } from "@mui/icons-material";
+import { BudgetSummaryData } from "@budget/core/types";
 
 import { BudgetSummaryItem } from "./budget-summary-item";
 import { DashboardPanel } from "./dashboard-panel";
@@ -19,8 +12,7 @@ type BudgetSummaryProps = {
 };
 
 export function BudgetSummary({ budgetSummary }: BudgetSummaryProps) {
-  const netGainLoss =
-    budgetSummary.currentPeriod.income + budgetSummary.currentPeriod.expenses;
+  const netGainLoss = budgetSummary.currentPeriod.income + budgetSummary.currentPeriod.expenses;
   const content = (
     <Table size="small" sx={{ maxWidth: 400 }}>
       <TableBody>

@@ -25,48 +25,43 @@ interface DocumentProps {
   title?: string;
 }
 
-const Document = withEmotionCache(
-  ({ children, title }: DocumentProps, emotionCache) => {
-    const clientStyleData = React.useContext(ClientStyleContext);
+const Document = withEmotionCache(({ children, title }: DocumentProps, emotionCache) => {
+  const clientStyleData = React.useContext(ClientStyleContext);
 
-    // Only executed on client
-    useEnhancedEffect(() => {
-      // re-link sheet container
-      emotionCache.sheet.container = document.head;
-      // re-inject tags
-      emotionCache.sheet.flush();
-      // reset cache to reapply global styles
-      clientStyleData.reset();
-    }, []);
+  // Only executed on client
+  useEnhancedEffect(() => {
+    // re-link sheet container
+    emotionCache.sheet.container = document.head;
+    // re-inject tags
+    emotionCache.sheet.flush();
+    // reset cache to reapply global styles
+    clientStyleData.reset();
+  }, []);
 
-    return (
-      <html lang="en">
-        <head>
-          <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width,initial-scale=1" />
-          <meta name="theme-color" content={theme.palette.primary.main} />
-          {title ? <title>{title}</title> : null}
-          <Meta />
-          <Links />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-          />
-          <meta
-            name="emotion-insertion-point"
-            content="emotion-insertion-point"
-          />
-        </head>
-        <body>
-          {children}
-          <ScrollRestoration />
-          <Scripts />
-          <LiveReload />
-        </body>
-      </html>
-    );
-  }
-);
+  return (
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="theme-color" content={theme.palette.primary.main} />
+        {title ? <title>{title}</title> : null}
+        <Meta />
+        <Links />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        />
+        <meta name="emotion-insertion-point" content="emotion-insertion-point" />
+      </head>
+      <body>
+        {children}
+        <ScrollRestoration />
+        <Scripts />
+        <LiveReload />
+      </body>
+    </html>
+  );
+});
 
 export default function App() {
   return (
@@ -100,9 +95,7 @@ export function ErrorBoundary() {
           <Typography variant="h4">An Error Occurred</Typography>
           <Typography variant="body1">Status: {errorDetails.status}</Typography>
           {errorDetails.message && (
-            <Typography variant="body1">
-              Message: {errorDetails.message}
-            </Typography>
+            <Typography variant="body1">Message: {errorDetails.message}</Typography>
           )}
         </Container>
       </Layout>

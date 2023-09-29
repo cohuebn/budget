@@ -10,10 +10,7 @@ export function Link(props: LinkProps) {
   const theme = useTheme();
 
   return (
-    <RemixLink
-      style={{ color: theme.palette.text.primary, textDecoration: "none" }}
-      to={props.to}
-    >
+    <RemixLink style={{ color: theme.palette.text.primary, textDecoration: "none" }} to={props.to}>
       {props.children}
     </RemixLink>
   );

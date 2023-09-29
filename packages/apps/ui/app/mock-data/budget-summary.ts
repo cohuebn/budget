@@ -1,4 +1,4 @@
-import { BudgetSummaryData } from "~/types";
+import { BudgetSummaryData } from "@budget/core/types";
 
 export const mockBudgetSummaryData: BudgetSummaryData = {
   currentPeriod: {
