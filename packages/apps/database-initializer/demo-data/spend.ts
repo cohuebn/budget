@@ -2,7 +2,7 @@
 import { sub } from "date-fns";
 import { BudgetItemWithId } from "@budget/core/types";
 
-import { DemoData } from "./types";
+import { MongoDemoData } from "./types";
 
 const now = new Date();
 const bills: BudgetItemWithId[] = [
@@ -269,8 +269,7 @@ const savings: BudgetItemWithId[] = [
   },
 ].map((x) => ({ ...x, category: "Savings" }));
 
-export const spend: DemoData = {
+export const spend: MongoDemoData = {
   collection: "actuals-history",
   documents: [...bills, ...debts, ...entertainment, ...savings],
-  documentLocator: (x) => ({ _id: x._id }),
 };

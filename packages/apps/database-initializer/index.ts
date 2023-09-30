@@ -1,8 +1,8 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, Document } from "mongodb";
 import { createLogger } from "@budget/core";
 import { program } from "commander";
 
-import { allDemoData } from "./demo-data";
+import { mongoDemoData } from "./demo-data";
 import { config } from "./config";
 
 const logger = createLogger("index");
@@ -11,13 +11,17 @@ type RunInitializerOptions = {
   includeDemoData: boolean;
 };
 
+function getDocumentFilter(document: Document) {
+  return { _id: document._id };
+}
+
 async function addDemoData(mongoClient: MongoClient) {
   logger.info("Adding demo data");
-  for (const demoData of allDemoData) {
+  for (const demoData of mongoDemoData) {
     const collection = mongoClient.db().collection(demoData.collection);
     await Promise.all(
       demoData.documents.map((item) =>
-        collection.replaceOne(demoData.documentLocator(item), item, { upsert: true }),
+        collection.replaceOne(getDocumentFilter(item), item, { upsert: true }),
       ),
     );
   }

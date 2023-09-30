@@ -1,7 +1,6 @@
-import { Document, Filter } from "mongodb";
+import { Document } from "mongodb";
 
-export type DemoData = {
+export type MongoDemoData = {
   collection: string;
   documents: Document[];
-  documentLocator: (item: Document) => Filter<Document>;
 };
