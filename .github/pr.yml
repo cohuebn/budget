@@ -1,0 +1,32 @@
+name: Pull Request CI
+on:
+  pull_request:
+    paths:
+      - packages/**
+      - .github/workflows/node-pr.yml
+
+jobs:
+  ci_checks:
+    name: CI checks
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9
+
+      - name: Get Node Version
+        run: echo "NODE_VERSION=$(<.nvmrc)" >> $GITHUB_ENV
+
+      - uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+          cache-dependency-path: node/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npx nx run-many -t lint
+
+      - name: Test
+        run: npx nx run-many -t test
