@@ -1,5 +1,5 @@
 {
-  "name": "@budget/database-initializer",
+  "name": "@budget/data-initializer",
   "version": "0.0.1",
   "description": "The database component of the budget application",
   "main": "index.js",
