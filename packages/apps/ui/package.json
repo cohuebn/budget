@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@budget/core": "*",
+    "@budget/firebase": "*",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.0",
     "@emotion/server": "^11.11.0",
