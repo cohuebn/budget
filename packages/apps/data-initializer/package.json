@@ -1,12 +1,10 @@
 {
-  "name": "@budget/database-initializer",
+  "name": "@budget/data-initializer",
   "version": "0.0.1",
   "description": "The database component of the budget application",
   "main": "index.js",
   "scripts": {
     "lint": "eslint ./",
-    "test": "jest --passWithNoTests",
-    "test:watch": "jest --passWithNoTests --watch",
     "dev": "esbuild index.ts --bundle --sourcemap --outdir=dist --platform=node --target=node18 && node -r dotenv/config dist/index.js",
     "build": "tsc index.ts --outDir dist",
     "build:webpack": "webpack --config ./webpack.config.js"

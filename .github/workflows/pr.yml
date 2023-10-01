@@ -10,8 +10,13 @@ jobs:
     name: CI checks
     runs-on: ubuntu-20.04
     steps:
-      - name: Clone repo
+      - name: Clone PR branch
         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9
+
+      - name: Clone main branch # The main branch is cloned to allow 'nx affected' to work
+        uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Get Node Version
         run: echo "NODE_VERSION=$(<.nvmrc)" >> $GITHUB_ENV
@@ -20,13 +25,13 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
-          cache-dependency-path: node/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
         run: npm ci
 
       - name: Lint
-        run: npx nx run-many -t lint
+        run: npx nx affected -t lint
 
       - name: Test
-        run: npx nx run-many -t test
+        run: npx nx affected -t test
