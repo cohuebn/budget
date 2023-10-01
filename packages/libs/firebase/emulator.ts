@@ -1,8 +1,4 @@
-import {
-  getOptionalBool,
-  getRequired,
-  getTransformedOptional,
-} from "@budget/core";
+import { getOptionalBool, getRequired } from "@budget/core";
 
 import { FirebaseEmulatorConfig } from "./types";
 
@@ -16,11 +12,6 @@ export function useEmulator() {
 /** Get the Firebase emulator configuration from environment variables */
 export function getFirebaseEmulatorConfig(): FirebaseEmulatorConfig {
   return {
-    emulatorHost: getRequired("FIREBASE_EMULATOR_HOST"),
-    emulatorAuthPort: getTransformedOptional(
-      "FIREBASE_EMULATOR_AUTH_PORT",
-      (value: string) => parseInt(value, 10),
-      9099,
-    ),
+    emulatorHost: getRequired("FIREBASE_AUTH_EMULATOR_HOST"),
   };
 }

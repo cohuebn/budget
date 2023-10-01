@@ -4,6 +4,7 @@ import { program } from "commander";
 
 import { mongoDemoData } from "./demo-data";
 import { config } from "./config";
+import { addDemoUserToFirebase } from "./firebase-users";
 
 const logger = createLogger("index");
 
@@ -17,6 +18,7 @@ function getDocumentFilter(document: Document) {
 
 async function addDemoData(mongoClient: MongoClient) {
   logger.info("Adding demo data");
+  await addDemoUserToFirebase();
   for (const demoData of mongoDemoData) {
     const collection = mongoClient.db().collection(demoData.collection);
     await Promise.all(
