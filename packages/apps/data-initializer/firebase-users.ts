@@ -17,13 +17,16 @@ async function findUser(uid: string) {
 
 export async function addDemoUserToFirebase() {
   const auth = getFirebaseAdminAuth();
+
   const { uid } = demoUser;
   if (!uid) throw new Error("Expected the demo user to have a specified uid");
+
   const existingUser = await findUser(uid);
   if (existingUser) {
     await auth.updateUser(uid, demoUser);
   } else {
     await auth.createUser(demoUser);
   }
+
   logger.info({ userId: demoUser.uid }, "Ensured demo user is in Firebase");
 }
