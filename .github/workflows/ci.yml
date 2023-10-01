@@ -1,22 +1,22 @@
-name: Pull Request CI
+name: Continuous integration
 on:
+  push:
+    branches:
+      - main
   pull_request:
     paths:
       - packages/**
       - .github/workflows/node-pr.yml
 
 jobs:
-  ci_checks:
-    name: CI checks
+  change_validation:
+    name: Change Validation
     runs-on: ubuntu-20.04
     steps:
       - name: Clone PR branch
         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9
-
-      - name: Clone main branch # The main branch is cloned to allow 'nx affected' to work
-        uses: actions/checkout@v4
         with:
-          ref: main
+          fetch-depth: 0
 
       - uses: nrwl/nx-set-shas@v3
 
@@ -33,7 +33,7 @@ jobs:
         run: npm ci
 
       - name: Lint
-        run: npx nx affected -t lint
+        run: npx nx affected -t lint --parallel=3
 
       - name: Test
-        run: npx nx affected -t test
+        run: npx nx affected -t test --parallel=3
