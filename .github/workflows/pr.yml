@@ -18,6 +18,8 @@ jobs:
         with:
           ref: main
 
+      - uses: nrwl/nx-set-shas@v3
+
       - name: Get Node Version
         run: echo "NODE_VERSION=$(<.nvmrc)" >> $GITHUB_ENV
 
@@ -31,7 +33,7 @@ jobs:
         run: npm ci
 
       - name: Lint
-        run: npx nx run-many -t lint
+        run: npx nx affected -t lint
 
       - name: Test
-        run: npx nx run-many -t test
+        run: npx nx affected -t test
