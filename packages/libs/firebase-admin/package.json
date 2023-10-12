@@ -1,7 +1,7 @@
 {
-  "name": "@budget/firebase",
+  "name": "@budget/firebase-admin",
   "version": "1.0.0",
-  "description": "A library for Firebase interaction from the budget app",
+  "description": "A library for Firebase interaction from the budget app using the Firebase admin SDK",
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint ./",
@@ -11,7 +11,8 @@
     "@budget/lint": "*",
     "@budget/core": "*",
     "@budget/firebase-config": "*",
-    "firebase": "^9.22.1"
+    "firebase": "^9.22.1",
+    "firebase-admin": "^11.11.0"
   },
   "author": "Cory Huebner",
   "license": "ISC"

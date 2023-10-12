@@ -2,7 +2,7 @@
   "name": "@budget/data-initializer",
   "version": "0.0.1",
   "description": "The database component of the budget application",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "lint": "eslint ./",
     "dev": "esbuild index.ts --bundle --sourcemap --outdir=dist --platform=node --target=node18 && node -r dotenv/config dist/index.js",
@@ -24,7 +24,7 @@
   "homepage": "https://github.com/cohuebn/budget#readme",
   "dependencies": {
     "@budget/core": "*",
-    "@budget/firebase": "*",
+    "@budget/firebase-admin": "*",
     "commander": "^11.0.0",
     "date-fns": "^2.30.0",
     "dotenv": "^16.1.4",
