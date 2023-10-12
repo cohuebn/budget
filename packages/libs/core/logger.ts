@@ -1,7 +1,35 @@
+/* eslint-disable no-console */
 import pino from "pino";
 
 import { getOptional } from "./env";
+import { LogCall, Logger } from "./types";
 
-export function createLogger(name: string) {
-  return pino({ name, level: getOptional("LOG_LEVEL", "info") });
+const defaultLogLevel = "info";
+
+/**
+ * Adapt console log functions (console.log, console.info, etc) into the same method
+ * (object, message) signature as Pino's log methods.
+ */
+function adaptConsoleLog(logMethod: typeof console.info): LogCall {
+  return (obj: unknown, message: string) => logMethod(message, { obj });
+}
+
+export function createLogger(name: string): Logger {
+  // Use pino within node environments
+  const hasProcess = typeof process === "object";
+  if (hasProcess) {
+    const level = hasProcess ? getOptional("LOG_LEVEL", defaultLogLevel) : defaultLogLevel;
+    return pino({ name, level });
+  }
+  // Fallback to console logs if not in a node environment
+  return {
+    name,
+    level: "info",
+    trace: adaptConsoleLog(console.trace),
+    debug: adaptConsoleLog(console.debug),
+    info: adaptConsoleLog(console.info),
+    warn: adaptConsoleLog(console.warn),
+    error: adaptConsoleLog(console.error),
+    fatal: adaptConsoleLog(console.error),
+  };
 }

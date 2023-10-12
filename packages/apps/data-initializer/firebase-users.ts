@@ -1,4 +1,4 @@
-import { getFirebaseAdminAuth } from "@budget/firebase";
+import { getFirebaseAdminAuth } from "@budget/firebase-admin";
 import { createLogger } from "@budget/core";
 
 import { demoUser } from "./demo-data/users";

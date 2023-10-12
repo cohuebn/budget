@@ -1,6 +1,6 @@
-import { json } from "@remix-run/node";
 import { getFirebaseOptionsFromEnvironment } from "@budget/firebase";
+import { typedjson } from "remix-typedjson";
 
 export async function loader() {
-  return json(getFirebaseOptionsFromEnvironment());
+  return typedjson(getFirebaseOptionsFromEnvironment());
 }
