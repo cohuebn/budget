@@ -4,7 +4,7 @@ import { program } from "commander";
 
 import { mongoDemoData } from "./demo-data";
 import { config } from "./config";
-import { addDemoUserToFirebase } from "./firebase-users";
+import { addAllDemoUsersToFirebase } from "./firebase-users";
 
 const logger = createLogger("index");
 
@@ -18,7 +18,7 @@ function getDocumentFilter(document: Document) {
 
 async function addDemoData(mongoClient: MongoClient) {
   logger.info("Adding demo data");
-  await addDemoUserToFirebase();
+  await addAllDemoUsersToFirebase();
   for (const demoData of mongoDemoData) {
     const collection = mongoClient.db().collection(demoData.collection);
     await Promise.all(
@@ -37,11 +37,11 @@ export async function initializeDatabase(options: RunInitializerOptions) {
     logger.info("Successfully connected to database");
     mongoClient.db().collection("actuals-history");
     if (options.includeDemoData) await addDemoData(mongoClient);
+    logger.info("Succesfully initialized all data");
   } catch (err: unknown) {
     logger.error({ err }, "An unhandled exception occurred");
   } finally {
     if (mongoClient) await mongoClient.close();
-    logger.info("Done");
   }
 }
 

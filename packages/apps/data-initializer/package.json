@@ -24,6 +24,7 @@
   "homepage": "https://github.com/cohuebn/budget#readme",
   "dependencies": {
     "@budget/core": "*",
+    "@budget/firebase": "*",
     "@budget/firebase-admin": "*",
     "commander": "^11.0.0",
     "date-fns": "^2.30.0",
