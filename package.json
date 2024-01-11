@@ -5,9 +5,9 @@
   "scripts": {},
   "private": true,
   "devDependencies": {
-    "@nx/js": "16.9.0",
+    "@nx/js": "16.9.1",
     "esbuild-loader": "^4.0.2",
-    "nx": "16.9.0",
+    "nx": "16.9.1",
     "nx-cloud": "latest",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",

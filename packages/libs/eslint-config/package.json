@@ -9,7 +9,7 @@
     "eslint",
     "eslintconfig"
   ],
-  "author": "Cory Huebner",
+  "author": "Cory Huebner <chuebner86@gmail.com>",
   "repository": {
     "url": "https://github.com/cohuebn/budget"
   },

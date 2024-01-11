@@ -14,6 +14,6 @@
     "firebase": "^9.22.1",
     "firebase-admin": "^11.11.0"
   },
-  "author": "Cory Huebner",
+  "author": "Cory Huebner <chuebner86@gmail.com>",
   "license": "ISC"
 }
