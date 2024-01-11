@@ -17,7 +17,7 @@
     "dev:run": "esbuild index.ts --bundle --sourcemap --outdir=dist --platform=node --target=node18 && node -r dotenv/config dist/index.js",
     "build": "tsc index.ts --outDir dist"
   },
-  "author": "Cory Huebner",
+  "author": "Cory Huebner <chuebner86@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.1.4",
