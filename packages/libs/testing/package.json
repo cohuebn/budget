@@ -16,5 +16,8 @@
     "@budget/lint": "*",
     "typescript": "^5.1.3"
   },
-  "prettier": "@budget/eslint-config/.prettierrc"
+  "prettier": "@budget/eslint-config/.prettierrc",
+  "dependencies": {
+    "random-word-slugs": "^0.1.7"
+  }
 }
