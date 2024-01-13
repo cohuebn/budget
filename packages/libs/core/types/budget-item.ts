@@ -1,3 +1,5 @@
+import { WithId } from "./with-id";
+
 export type BudgetItem = {
   category: string;
   name: string;
@@ -5,4 +7,4 @@ export type BudgetItem = {
   amount: number;
 };
 
-export type BudgetItemWithId = BudgetItem & { _id: string };
+export type BudgetItemWithId = WithId<BudgetItem>;
