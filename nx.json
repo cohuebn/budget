@@ -16,6 +16,9 @@
     "test": {
       "dependsOn": ["^build", "build"]
     },
+    "test:integration": {
+      "dependsOn": ["^build", "build"]
+    },
     "dev": {
       "dependsOn": ["^build", "build"]
     }
