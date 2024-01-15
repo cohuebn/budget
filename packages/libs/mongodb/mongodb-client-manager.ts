@@ -2,6 +2,8 @@ import { createLogger } from "@budget/core";
 import { MongoClient } from "mongodb";
 
 import { config } from "./config";
+import { ConnectionOptions } from "./types";
+import { toConnectionString } from "./connection-string";
 
 const logger = createLogger("budget-mongodb-client");
 
@@ -16,8 +18,16 @@ Symbol.asyncDispose ??= Symbol("Symbol.asyncDispose");
 export class MongoClientManager implements AsyncDisposable {
   _client: Promise<MongoClient>;
 
-  constructor() {
-    this._client = MongoClient.connect(config.dbConnectionString());
+  constructor(options: Partial<ConnectionOptions> = {}) {
+    const connectionString = toConnectionString({
+      host: options.host ?? config.dbHost(),
+      port: options.port ?? config.dbPort(),
+      dbName: options.dbName ?? config.dbName(),
+      username: options.username ?? config.dbUsername(),
+      password: options.password ?? config.dbPassword(),
+      isAdminConnection: options.isAdminConnection,
+    });
+    this._client = MongoClient.connect(connectionString);
   }
 
   getClient(): Promise<MongoClient> {

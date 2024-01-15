@@ -1,14 +1,11 @@
-export type ConnectionOptions = {
-  host: string;
-  port: number;
-  dbName: string;
-  username?: string;
-  password?: string;
-};
+import { ConnectionOptions } from "./types";
 
 export function toConnectionString(options: ConnectionOptions) {
   if (options.username && options.password) {
-    return `mongodb://${options.username}:${options.password}@${options.host}:${options.port}/${options.dbName}`;
+    const encodedUsername = encodeURIComponent(options.username);
+    const encodedPassword = encodeURIComponent(options.password);
+    const adminAuthSegment = options.isAdminConnection ? "?authSource=admin" : "";
+    return `mongodb://${encodedUsername}:${encodedPassword}@${options.host}:${options.port}/${options.dbName}${adminAuthSegment}`;
   }
   return `mongodb://${options.host}:${options.port}/${options.dbName}`;
 }

@@ -3,4 +3,7 @@ module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
   collectCoverage: false,
+  transform: {
+    "\\.ts$": ["ts-jest", { tsconfig: "./tsconfig-tests.json" }],
+  },
 };
