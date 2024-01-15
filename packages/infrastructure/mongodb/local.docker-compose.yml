@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo:6-jammy
+    ports:
+      - "27017-27019:27017-27019"
+    volumes:
+      - ./.data:/data/db
+    env_file:
+      - ${MONGODB_ENV_FILE:-./local.env}
+    networks:
+      - budget-mongodb
+networks:
+  budget-mongodb:
+    driver: bridge

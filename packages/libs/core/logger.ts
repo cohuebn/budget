@@ -19,7 +19,17 @@ export function createLogger(name: string): Logger {
   const hasProcess = typeof process === "object";
   if (hasProcess) {
     const level = hasProcess ? getOptional("LOG_LEVEL", defaultLogLevel) : defaultLogLevel;
-    return pino({ name, level });
+    return pino({
+      name,
+      level,
+      formatters: {
+        level: (label) => ({ level: label }),
+      },
+      serializers: {
+        ...pino.stdSerializers,
+        error: pino.stdSerializers.err,
+      },
+    });
   }
   // Fallback to console logs if not in a node environment
   return {

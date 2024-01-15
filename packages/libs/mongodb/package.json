@@ -1,0 +1,36 @@
+{
+  "name": "@budget/mongodb",
+  "version": "1.0.0",
+  "description": "Library to interact with MongoDB",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cohuebn/budget.git"
+  },
+  "author": "Cory Huebner <chuebner86@gmail.com>",
+  "keywords": [
+    "budget"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cohuebn/budget/issues"
+  },
+  "homepage": "https://github.com/cohuebn/budget#readme",
+  "devDependencies": {
+    "@budget/lint": "*",
+    "@budget/testing": "*",
+    "@types/jest": "^29.5.11",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@budget/core": "*",
+    "mongodb": "^6.3.0"
+  },
+  "scripts": {
+    "lint": "eslint ./",
+    "test:integration": "LOG_LEVEL=${LOG_LEVEL:-warn} ./integration-tests.sh"
+  },
+  "prettier": "@budget/eslint-config/.prettierrc"
+}
